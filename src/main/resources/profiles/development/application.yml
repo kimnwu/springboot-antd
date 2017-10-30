@@ -1,0 +1,39 @@
+server:
+  port: 8080
+  context-path: /
+  session:
+    timeout: 3600
+
+spring:
+  datasource:
+    url: jdbc:mysql://172.17.21.59:3306/rdp-demo-boot-antd?allowMultiQueries=true
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver
+  session:
+      store-type: redis
+      redis:
+        namespace: ucas:rdpdemo
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5 # 启用不严格检查html
+  redis:
+    host: 172.17.21.59
+    password: 123456
+    port: 7000
+
+mybatis:
+  mapper-locations: classpath:sql/mapper/*.xml
+
+#是否启动quartz任务扫描器
+quartz:
+  scan: false
+
+ucsmy:
+  gen-code: true # 开发环境开启代码生成功能
+  init-password: 123456 # 初始密码
+  # 重定向配置（前后端分离配置）
+  redirect:
+    page-url: http://localhost:9090
+    login-url: http://localhost:9090/login
+    api-url: http://localhost:9090/api
